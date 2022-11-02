@@ -2,8 +2,10 @@ package MVC.Model;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
+
 @Entity
-@Table(name = "apprenante", schema = "simplone", catalog = "")
+@Table(name = "apprenante", schema = "simplone")
 public class ApprenanteEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -21,6 +23,9 @@ public class ApprenanteEntity {
     @Basic
     @Column(name = "password", nullable = false, length = 255)
     private String password;
+
+    @OneToMany(mappedBy = "apprenante")
+    private Collection<ApprenanteEntity> apprenante;
 
     public int getIdApprenante() {
         return idApprenante;
@@ -59,6 +64,24 @@ public class ApprenanteEntity {
     }
 
     public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public ApprenanteEntity() {
+    }
+
+    public ApprenanteEntity(String nom, String prenom, String username, String password) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.username = username;
+        this.password = password;
+    }
+
+    public ApprenanteEntity(int idApprenante, String nom, String prenom, String username, String password) {
+        this.idApprenante = idApprenante;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.username = username;
         this.password = password;
     }
 }

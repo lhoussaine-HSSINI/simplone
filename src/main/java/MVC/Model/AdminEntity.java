@@ -3,8 +3,20 @@ package MVC.Model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "admin", schema = "simplone", catalog = "")
+@Table(name = "admin", schema = "simplone")
+
 public class AdminEntity {
+    public AdminEntity(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public AdminEntity(int idAdmin, String username, String password) {
+        this.idAdmin = idAdmin;
+        this.username = username;
+        this.password = password;
+    }
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id_admin", nullable = false)
@@ -15,6 +27,9 @@ public class AdminEntity {
     @Basic
     @Column(name = "password", nullable = false, length = 255)
     private String password;
+
+    public AdminEntity() {
+    }
 
     public int getIdAdmin() {
         return idAdmin;

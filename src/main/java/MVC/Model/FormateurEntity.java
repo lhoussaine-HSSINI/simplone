@@ -2,8 +2,10 @@ package MVC.Model;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
+
 @Entity
-@Table(name = "formateur", schema = "simplone", catalog = "")
+@Table(name = "formateur", schema = "simplone")
 public class FormateurEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -21,6 +23,17 @@ public class FormateurEntity {
     @Basic
     @Column(name = "password", nullable = false, length = 255)
     private String password;
+
+    @OneToMany(mappedBy = "formateur")
+    private Collection<FormateurEntity> formateur;
+
+    public Collection<FormateurEntity> getFormateur() {
+        return formateur;
+    }
+
+    public void setFormateur(Collection<FormateurEntity> formateur) {
+        this.formateur = formateur;
+    }
 
     public int getIdFormateur() {
         return idFormateur;
@@ -59,6 +72,24 @@ public class FormateurEntity {
     }
 
     public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public FormateurEntity() {
+    }
+
+    public FormateurEntity(String nom, String prenom, String username, String password) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.username = username;
+        this.password = password;
+    }
+
+    public FormateurEntity(int idFormateur, String nom, String prenom, String username, String password) {
+        this.idFormateur = idFormateur;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.username = username;
         this.password = password;
     }
 }

@@ -3,7 +3,7 @@ package MVC.Model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "classroom", schema = "simplone", catalog = "")
+@Table(name = "classroom", schema = "simplone")
 public class ClassroomEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -12,16 +12,27 @@ public class ClassroomEntity {
     @Basic
     @Column(name = "nom_classroom", nullable = false, length = 255)
     private String nomClassroom;
-    @Basic
-    @Column(name = "id_promo", nullable = false)
-    private int idPromo;
-    @Basic
-    @Column(name = "id_formateur", nullable = false)
-    private int idFormateur;
-    @Basic
-    @Column(name = "id_apprenante", nullable = false)
-    private int idApprenante;
+//    @Basic
+//    @Column(name = "id_promo", nullable = false)
+//    private int idPromo;
+//    @Basic
+//    @Column(name = "id_formateur", nullable = false)
+//    private int idFormateur;
+//    @Basic
+//    @Column(name = "id_apprenante", nullable = false)
+//    private int idApprenante;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_promo", nullable = false)
+    private PromotionEntity promotion;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_apprenante", nullable = false)
+    private ApprenanteEntity apprenante;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_formateur", nullable = false)
+    private FormateurEntity formateur;
     public int getIdClassroom() {
         return idClassroom;
     }
@@ -38,27 +49,45 @@ public class ClassroomEntity {
         this.nomClassroom = nomClassroom;
     }
 
-    public int getIdPromo() {
-        return idPromo;
+    public PromotionEntity getPromotion() {
+        return promotion;
     }
 
-    public void setIdPromo(int idPromo) {
-        this.idPromo = idPromo;
+    public void setPromotion(PromotionEntity promotion) {
+        this.promotion = promotion;
     }
 
-    public int getIdFormateur() {
-        return idFormateur;
+    public ApprenanteEntity getApprenante() {
+        return apprenante;
     }
 
-    public void setIdFormateur(int idFormateur) {
-        this.idFormateur = idFormateur;
+    public void setApprenante(ApprenanteEntity apprenante) {
+        this.apprenante = apprenante;
     }
 
-    public int getIdApprenante() {
-        return idApprenante;
+    public FormateurEntity getFormateur() {
+        return formateur;
     }
 
-    public void setIdApprenante(int idApprenante) {
-        this.idApprenante = idApprenante;
+    public void setFormateur(FormateurEntity formateur) {
+        this.formateur = formateur;
+    }
+
+    public ClassroomEntity() {
+    }
+
+    public ClassroomEntity(String nomClassroom, PromotionEntity promotion, ApprenanteEntity apprenante, FormateurEntity formateur) {
+        this.nomClassroom = nomClassroom;
+        this.promotion = promotion;
+        this.apprenante = apprenante;
+        this.formateur = formateur;
+    }
+
+    public ClassroomEntity(int idClassroom, String nomClassroom, PromotionEntity promotion, ApprenanteEntity apprenante, FormateurEntity formateur) {
+        this.idClassroom = idClassroom;
+        this.nomClassroom = nomClassroom;
+        this.promotion = promotion;
+        this.apprenante = apprenante;
+        this.formateur = formateur;
     }
 }
