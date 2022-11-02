@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/simplone</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.username">root</property>
+        <mapping class="MVC.Model.AdminEntity"/>
+        <mapping resource="AdminEntity.hbm.xml"/>
+        <mapping resource="ApprenanteEntity.hbm.xml"/>
+        <mapping class="MVC.Model.ApprenanteEntity"/>
+        <mapping class="MVC.Model.BriefEntity"/>
+        <mapping resource="BriefEntity.hbm.xml"/>
+        <mapping resource="ClassroomEntity.hbm.xml"/>
+        <mapping class="MVC.Model.ClassroomEntity"/>
+        <mapping resource="FormateurEntity.hbm.xml"/>
+        <mapping class="MVC.Model.FormateurEntity"/>
+        <mapping resource="PromotionEntity.hbm.xml"/>
+        <mapping class="MVC.Model.PromotionEntity"/>
+        <!-- <property name="connection.username"/> -->
+        <!-- <property name="connection.password"/> -->
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>

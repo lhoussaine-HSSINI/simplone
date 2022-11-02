@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="MVC.Model.ClassroomEntity" table="classroom" schema="simplone">
+        <id name="idClassroom">
+            <column name="id_classroom" sql-type="int(11)"/>
+        </id>
+        <property name="nomClassroom">
+            <column name="nom_classroom" sql-type="varchar(255)"/>
+        </property>
+        <property name="idPromo">
+            <column name="id_promo" sql-type="int(11)"/>
+        </property>
+        <property name="idFormateur">
+            <column name="id_formateur" sql-type="int(11)"/>
+        </property>
+        <property name="idApprenante">
+            <column name="id_apprenante" sql-type="int(11)"/>
+        </property>
+    </class>
+</hibernate-mapping>
